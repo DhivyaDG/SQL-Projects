@@ -1,3 +1,5 @@
+CHINOOK DIGITAL MUSIC SHOP - ANALYSIS USING SQL
+
 The Chinook database represents a fictional digital music shop, like an iTunes store. The database is provided as a SQLite database file called chinook.db.
 
 The aim of this project is to explore the Chinook database using SQL and answer the following business questions:

@@ -1,10 +1,9 @@
-# Project Title
+Project Title: 
 
-# Project Description
-
-
-# Methods Used
+Description: 
 
 
-# Technologies
+Methods Used / Technologies:
+
+PostgreSQL 14.7 was installed locally on Windows 10 and Northwind database was created for this project; Jupyter Notebook was used to connect to this database for data analysis;
 

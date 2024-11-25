@@ -1,10 +1,19 @@
-Project Title: 
+Project Title: Analyzing North Wind Traders
 
 Description: 
-
+Northwind Traders is an fictitious international gourmet food distributor that sells various products such as beverages, confectioneries, meat, seafood, etc to customers. Management is looking for insights to make strategic decisions in several aspects of the business.
+Project Goals:
+1. Evaluating employee performance to boost productivity
+2. Sales growth and Trend analysis: General Trend in sales performance, Month-Over-Month Sales Growth, Cumulative Sales over Months for Each Product Category
+3. Identifying High-Value Customers
+4. Identify the top 20% of customers by total purchase volume
+5. Product and category performance to optimize inventory and marketing strategies: Percentage of Sales for Each Category, Top Three Products Per Category, Products that perform exceptionally well in terms of sales
 
 Methods Used / Technologies:
 
 PostgreSQL 14.7 was installed locally on Windows 10 and Northwind database was created for this project; 
 Jupyter Notebook was used to connect to this database for data analysis; "northwind" SQL file was imported to create tables (please refer ER.png for database schema)
 
+Please have alook at Python file "Analyzing_NorthwindTraders.ipynb" for detailed steps of analysis and results.
+
+Thank You!

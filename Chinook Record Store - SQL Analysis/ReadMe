@@ -9,6 +9,8 @@ The aim of this project is to explore the Chinook database using SQL and answer 
 3. Analyzing Sales by Country
 4. Analysis for changing Purchasing Strategy
 
+Other business questions such as finding out the popular artist, effect of protected and non-protected media types on popularity were also analysed.
+
 Methods/Technologies:
 Python visualizations have been added to better visualize the results. This is a guided project from Dataquest.
 

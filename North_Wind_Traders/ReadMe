@@ -5,5 +5,6 @@ Description:
 
 Methods Used / Technologies:
 
-PostgreSQL 14.7 was installed locally on Windows 10 and Northwind database was created for this project; Jupyter Notebook was used to connect to this database for data analysis;
+PostgreSQL 14.7 was installed locally on Windows 10 and Northwind database was created for this project; 
+Jupyter Notebook was used to connect to this database for data analysis; "northwind" SQL file was imported to create tables (please refer ER.png for database schema)
 

@@ -1,5 +1,5 @@
-Steps to install PostgreSQL 14.7 on Windows 10:
-
+Steps to Install PostgreSQL 14.7 on Windows 10 and Set Up Northwind Database
+----------------------------------------------
 Install PostgreSQL
 Configure Environment Variables
 Verify the Installation
@@ -10,123 +10,71 @@ Verify the Northwind database installation
 Connect to the Database Using Jupyter Notebook
 Prerequisites
 
-A computer running Windows 10
-Internet connection
-Download the official PostgreSQL 14.7 at https://get.enterprisedb.com/postgresql/postgresql-14.7-2-windows-x64.exe
-Save the installer executable to your computer and run the installer.
-Note: We recommend version 14.7 because it is commonly used. There are newer versions available, but their features vary substantially!
+Step 1: Install PostgreSQL
+Download PostgreSQL 14.7 for Windows 10 from:
+PostgreSQL 14.7 Installer
+Save the installer executable and run it.
+During installation, create the default postgres user and set a password.
+Note: Version 14.7 is recommended because it’s widely used and stable.
 
----------
 Step 2: Configure Environment Variables
-Next, we're going to configure environment variables on your Windows system. Why are we doing this? Well, environment variables are a powerful feature of operating systems that allow us to specify values - like directory locations - that can be used by multiple applications. In our case, we need to ensure that our system can locate the PostgreSQL executable files stored in the "bin" folder of the PostgreSQL directory.
+Add PostgreSQL’s bin folder to the Windows PATH so commands can be run from anywhere.
+Right-click Windows icon → System.
+Click Advanced system settings.
+In the System Properties dialog, click Environment Variables.
+Under System Variables, select Path → click Edit.
+Add: C:\Program Files\PostgreSQL\14\bin.
 
-By adding the PostgreSQL "bin" folder path to the system's PATH environment variable, we're telling our operating system where to find these executables. This means you'll be able to run PostgreSQL commands directly from the command line, no matter what directory you're in, because the system will know where to find the necessary files. This makes working with PostgreSQL more convenient and opens up the possibility of running scripts that interact with PostgreSQL.
-Now, let's get started with the steps to configure your environment variables on Windows!
-
-On the Windows taskbar, right-click the Windows icon and select System.
-
-Click on Advanced system settings in the left pane.
-
-In the System Properties dialog, click on the Environment Variables button.
-
-Under the System Variables section, scroll down and find the Path variable. Click on it to select it, then click the Edit button.
-
-In the Edit environment variable dialog, click the New button and add the path to the PostgreSQL bin folder, typically C:\Program Files\PostgreSQL\14\bin.
----
 Step 3: Verify the Installation
-After going through the installation and configuration process, it's essential to verify that PostgreSQL is correctly installed and accessible. This gives us the assurance that the software is properly set up and ready to use, which can save us from troubleshooting issues later when we start interacting with databases.
-
-If something went wrong during installation, this verification process will help you spot the problem early before creating or managing databases.
-
-Now, let's go through the steps to verify your PostgreSQL installation.
-
-Open the Command Prompt by pressing Win + R, typing cmd, and pressing Enter.
-Type psql --version and press Enter. You should see the PostgreSQL version number you installed if the installation was successful.
-To connect to the PostgreSQL server, type psql -U postgres and press Enter.
-When prompted, enter the password you set for the postgres user during installation. You should now see the postgres=# prompt, indicating you are connected to the PostgreSQL server.
----
-Create a new directory for the Northwind database and navigate to it:
-
-mkdir northwind && cd northwind
-
-Download the Northwind PostgreSQL SQL file using curl or paste SQL file in the northwind directory you create :
-
-curl -O <https://raw.githubusercontent.com/pthom/northwind_psql/master/northwind.sql>
-
-This will download the northwind.sql file to the northwind directory you created.
-
-Let's proceed with creating your new database:
-
-Connect to the PostgreSQL server as the postgres user:
-
+Open Command Prompt (Win + R → cmd).
+Run: psql --version → should return installed version.
+Connect to PostgreSQL:
 psql -U postgres
+Enter the password set during installation.
+If successful, you’ll see the postgres=# prompt.
 
-Create a new database called northwind:
+Step 4: Prepare Northwind Database Directory
+Create a directory:
+mkdir northwind && cd northwind
+Download the SQL file:
+curl -O https://raw.githubusercontent.com/pthom/northwind_psql/master/northwind.sql
+(Or manually save the file into the directory).
 
-postgres=# CREATE DATABASE northwind;
+Step 5: Create the Northwind Database
+Log in to PostgreSQL as the postgres user:
+psql -U postgres
+Create a new database:
+CREATE DATABASE northwind;
+Exit psql:
+\q
 
-Exit the psql command-line interface:
-
-postgres=# \q
-
-With the northwind database created, you can import the Northwind SQL file using psql. Follow these steps:
-
-In your Terminal, ensure you're in the northwind directory where you downloaded the northwind.sql file.
-Run the following command to import the Northwind SQL file into the northwind database:
-
+Step 6: Import the Northwind SQL File
+Make sure you’re in the northwind directory where northwind.sql is saved.
+Run the import:
 psql -U postgres -d northwind -f northwind.sql
+This loads all tables and data into the new database.
 
-This command connects to the PostgreSQL server as the postgres user, selects the northwind database, and executes the SQL commands in the northwind.sql file.
-
-To verify that the Northwind database has been installed correctly, follow these steps:
-
-Connect to the northwind database using psql:
-
+Step 7: Verify Northwind Database Installation
+Connect to the Northwind database:
 psql -U postgres -d northwind
+List all tables:
+\dt
+(Should show tables like categories, customers, employees, orders.)
+Run a sample query:
+SELECT * FROM customers LIMIT 5;
+Exit psql:
+\q
 
-List the tables in the Northwind database:
-
-postgres=# \dt
-
-You should see a list of Northwind tables: categories, customers, employees, orders, and more.
-
-Run a sample query to ensure the data has been imported correctly. For example, you can query the customers table:
-
-postgres=# SELECT * FROM customers LIMIT 5;
-
-This should return the first five rows from the customers table.
-
-Exit the psql command-line interface:
-
-postgres=# \q
-----
-Step 8: Connect to the Database Using Jupyter Notebook
-As we wrap up our installation, we will now introduce Jupyter Notebook as one of the tools available for executing SQL queries and analyzing the Northwind database. Jupyter Notebook offers a convenient and interactive platform that simplifies the visualization and sharing of query results, but it's important to note that it is an optional step. You can also access Postgres through other means. However, we highly recommend using Jupyter Notebook for its numerous benefits and enhanced user experience.
-
-To set up the necessary tools and establish a connection to the Northwind database, here is an overview of what each step will do:
-
-!pip install ipython-sql: This command installs the ipython-sql package. This package enables you to write SQL queries directly in your Jupyter Notebook, making it easier to execute and visualize the results of your queries within the notebook environment.
-
-%sql postgresql://postgres@localhost:5432/northwind: This command establishes a connection to the Northwind database using the PostgreSQL database system. The connection string has the following format:
-
-postgresql://username@hostname:port/database_name
-
-In this case, username is postgres, hostname is localhost, port is 5432, and database_name is northwind. The %sql magic command allows you to run a single-line SQL query in the Jupyter Notebook.
-
-
-Copy the following text into a code cell in the Jupyter Notebook:
-
+Step 8: Connect PostgreSQL to Jupyter Notebook (Optional but Recommended)
+Install SQL extension:
 !pip install ipython-sql
-
+Load the SQL extension inside Jupyter:
 %load_ext sql
-
+Connect to Northwind database:
 %sql postgresql://postgres@localhost:5432/northwind
-
-On Windows you may need to try the following command because you need to provide the password you set for the “postgres” user during installation:
-
+If a password is required:
 %sql postgresql://postgres:{password}@localhost:5432/northwind
-
-(or)
-%load_ext sql
+(Replace {password} with the one you set during installation)
+Example with variable connection string:
 connection_string = f'postgresql://postgres:{"4Projects"}@localhost:5432/northwind'
 %sql $connection_string

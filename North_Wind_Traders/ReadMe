@@ -14,6 +14,6 @@ Methods Used / Technologies:
 PostgreSQL 14.7 was installed locally on Windows 10 and Northwind database was created for this project; 
 Jupyter Notebook was used to connect to this database for data analysis; "northwind" SQL file was imported to create tables (please refer ER.png for database schema)
 
-Please have alook at Python file "Analyzing_NorthwindTraders.ipynb" for detailed steps of analysis and results.
+Please have a look at Python file "Analyzing_NorthwindTraders.ipynb" for detailed steps of analysis and results.
 
 Thank You!
